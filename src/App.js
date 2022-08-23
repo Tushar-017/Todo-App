@@ -4,10 +4,10 @@ import Sidebar from './component/sidebar/Sidebar';
 import Main from './component/main/Main';
 import User from './component/user/User';
 import AddNewTodo from './component/addNewTodo/AddNewTodo';
-import Calendar from './component/Calendar';
-import Projects from './component/Projects';
-import Todos from './component/Todos';
-import EditTodo from './component/EditTodo';
+import Calendar from './component/calendar/Calendar';
+import Projects from './component/projects/Projects';
+import Todos from './component/todos/Todos';
+import EditTodo from './component/editTodo/EditTodo';
 
 
 function App() {

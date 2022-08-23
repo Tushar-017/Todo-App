@@ -1,0 +1,57 @@
+/* Project */
+.Project {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  margin: 5px;
+  font-size: 1rem;
+}
+
+.Project .name {
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.Project .btns {
+  display: flex;
+  align-items: center;
+}
+
+.Project .btns .total-todos {
+  position: absolute;
+  right: 0;
+  background: #d7d6d6;
+  width: 25px;
+  height: 25px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.Project .btns .edit-delete {
+  position: absolute;
+  right: 0;
+  display: flex;
+}
+
+.Project .btns .edit-delete span {
+  border-radius: 50%;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 300ms ease-in-out;
+}
+
+.Project .btns .edit-delete span.edit:hover {
+  background: #acffac;
+}
+
+.Project .btns .edit-delete span.delete:hover {
+  background: #ffacac;
+}

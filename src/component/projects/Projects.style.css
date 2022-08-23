@@ -1,0 +1,50 @@
+/* Projects */
+.Projects {
+  padding: 1rem;
+  border-bottom: 1px solid #d7d6d6;
+}
+
+.Projects .header {
+  display: flex;
+  align-items: center;
+}
+
+.Projects .header .title {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.Projects .header .title p {
+  margin-left: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.Projects .header .btns {
+  display: flex;
+  align-items: center;
+}
+
+.Projects .header .btns span.edit {
+  margin-right: 5px;
+}
+
+.Projects .header .btns span {
+  border-radius: 50%;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Projects .header .btns span:hover {
+  background-color: #d7d6d6;
+  transition: all 200ms ease-in-out;
+}
+
+.Projects .items {
+  padding: 0.5rem;
+}

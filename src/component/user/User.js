@@ -1,4 +1,4 @@
-import {ReactComponent as Logo} from "../../images/check.svg"
+import {ReactComponent as Logo} from "../../images/checked.svg"
 
 import './User.style.css'
 

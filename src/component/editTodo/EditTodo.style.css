@@ -1,0 +1,17 @@
+/* EditTodo */
+.EditTodo{
+  position: absolute;
+  bottom: 55px;
+  left: calc(40px + 450px + 40px);
+  background-color: rgba(255, 255, 255, 0.9);
+  height: 80%;
+  width: 450px;
+  border-radius: 4px;
+}
+.EditTodo .header{
+  margin: 1rem 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 3px;
+  border-bottom: 1px solid #d7d6d6;
+}
