@@ -9,7 +9,7 @@ const User = () => {
         <Logo  width={40} height={40} />
       </div>
       <div className="info">
-        <p>Code Explained</p>
+        <p>NO<span className="D">D'</span>ilemma</p>
         <a href='#' >Logout!</a>
       </div>
     </div>

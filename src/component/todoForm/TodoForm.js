@@ -7,22 +7,26 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 import './TodoForm.style.css'
+// import Project from "../project/Project";
 
 const TodoForm = ({
   handleSubmit,
+  wide,
   backGround,
   heading = true,
   text, setText,
   day, setDay,
   time, setTime,
+  todoProject, setTodoProject,
   projects,
   showButton = false,
   setShowModal = false
 }) => {
 
 
+
   return (
-    <form className="TodoForm" style={{backgroundColor: backGround }}>
+    <form onSubmit={handleSubmit} className="TodoForm" style={{backgroundColor: backGround, width:wide }}>
       <div className="text">
         {
           heading && 
@@ -75,9 +79,18 @@ const TodoForm = ({
         </div>
         <div className="projects">
           {
+            projects.length > 0 ? (
             projects.map( project => 
-              <div className="project" key={project.id}>
+              <div 
+                className={`project ${todoProject === project.name ? 'active' : ''}`} 
+                onClick={() => setTodoProject(project.name)}
+                key={project.id}
+              >
                 {project.name}
+              </div>
+            )) : (
+              <div style={{color: '#ff0000'}}>
+                Please add a project before processing
               </div>
             )
           }

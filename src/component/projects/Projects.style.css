@@ -42,7 +42,7 @@
 
 .Projects .header .btns span:hover {
   background-color: #d7d6d6;
-  transition: all 200ms ease-in-out;
+  transition: background 200ms ease-in-out;
 }
 
 .Projects .items {

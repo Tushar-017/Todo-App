@@ -1,36 +1,102 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { ArrowClockwise, CheckCircleFill, Circle, Trash } from 'react-bootstrap-icons'
+import firebase from '../../firebase/index'
+import moment from 'moment'
 
 import './Todo.style.css'
+import { TodoContext } from '../../context'
+import { useSpring,animated, useTransition } from "react-spring";
 
 const Todo = ({todo}) => {
+  // State
   const [hover, setHover] = useState(false);
+  // Context
+  const {selectedTodo, setSelectedTodo} = useContext(TodoContext)
+
+  // ANIMATION
+  const fadeIn = useSpring({
+    from: {marginTop:'-12px', opacity: 0},
+    to: {marginTop:'0px', opacity:1}
+  })
+  const checkTransitions = useTransition(todo.checked, {
+    from: {position:'absolute',transform:'scale(0)'},
+    enter: {transform:'scale(1)'},
+    leave: {transform:'scale(0)'}
+  })
+
+  const deleteTodo = todo => {
+    firebase
+      .firestore()
+      .collection('todos')
+      .doc(todo.id)
+      .delete( )
+  }
+
+  const handleDelete = todo => {
+    deleteTodo(todo);
+    if(selectedTodo === todo){
+      setSelectedTodo(undefined)
+    }
+  }
+
+  const checkedTodo = todo => {
+    firebase
+      .firestore()
+      .collection('todos')
+      .doc(todo.id)
+      .update({
+        checked: !todo.checked,
+      })
+  }
+  const repeatNextDay = todo => {
+    const nextDayDate = moment(todo.date, 'MM/DD/YYYY').add(1, 'days');
+    const repeatedTodo = {
+      ...todo,
+      checked: false,
+      date: nextDayDate.format('MM/DD/YYYY'),
+      day: nextDayDate.format('d')
+    }
+    delete repeatedTodo.id
+
+    firebase
+      .firestore()
+      .collection('todos')
+      .add(repeatedTodo)
+  }
   return (
-    <div className='Todo'>
+    <animated.div style={fadeIn} className='Todo'>
       <div className="todo-container"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <div className="check-todo">
+        <div className="check-todo"
+          onClick={() => checkedTodo(todo)}
+        >
           {
-            todo.checked ?
-            (
-              <span className="checked">
-                <CheckCircleFill color='#1EC94C' />
-              </span>
-            ):(
-              <span className="unchecked">
-                <Circle color={todo.color} />
-              </span>
+            checkTransitions((props, checked)=>
+              checked ?
+              (
+                <animated.span style={props} className="checked">
+                  <CheckCircleFill color='#1EC94C' />
+                </animated.span>
+              ):(
+                <animated.span style={props} className="unchecked">
+                  <Circle color={todo.color} />
+                </animated.span>
+              )
             )
           }
         </div>
-        <div className="text">
+        <div className="text"
+          onClick={() => setSelectedTodo(todo)}
+        >
           <p style={{color: todo.checked ? '#bebebe' : '#000000'}}>{todo.text}</p>
-          <span>{todo.time} — {todo.project}</span>
+          <span>{todo.time} — {todo.projectName}</span>
           <div className={`line ${todo.checked ? 'line-through' : ''}`}></div>
         </div>
-        <div className="add-to-next-day">
+        <div className="add-to-next-day"
+          onClick={() => repeatNextDay(todo)}
+        >
           {
             todo.checked && 
             <span>
@@ -38,7 +104,10 @@ const Todo = ({todo}) => {
             </span>
           }
         </div>
-        <div className="delete-todo">
+        <div 
+          className="delete-todo"
+          onClick={() => handleDelete(todo)}
+        >
           {
             (hover || todo.checked) && 
             <span>
@@ -47,7 +116,7 @@ const Todo = ({todo}) => {
           }
         </div>
       </div>
-    </div>
+    </animated.div>
   )
 }
 

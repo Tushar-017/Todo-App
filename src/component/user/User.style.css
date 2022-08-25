@@ -1,17 +1,26 @@
 .User {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
   padding: 1rem;
   border: 1px solid #d7d6d6;
 }
-
+.logo-container{
+  padding-bottom: 25px;
+  padding-right: 3px;
+}
 .User .info p {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
+.User .info .D{
+  /* font-size: 1.1rem; */
+  color: rgb(6, 206, 63);
+}
+
 .User .info a {
+  padding-top: 18px;
   text-decoration: none;
   display: flex;
   justify-content: flex-end;
