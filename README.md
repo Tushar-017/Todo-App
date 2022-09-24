@@ -11,7 +11,8 @@ No-Dilemma | Todo creating website build using React and Firebase.
 - React for UI
 - Firebase as serverless DB
 - React Router for Routing
-- CSS for styling
+- Bootstrap for styling
+- MomentJs for Dates
 - MUI
 
 ## Features
